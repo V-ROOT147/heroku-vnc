@@ -46,6 +46,8 @@ RUN set -ex; \
 	ibus-gtk \
 	ibus-gtk3 \
 	ibus-qt4 \
+        default-jdk \
+        unrar \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -59,6 +61,8 @@ RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >
 RUN echo "deb http://deb.anydesk.com/ all main"  >> /etc/apt/sources.list
 RUN wget --no-check-certificate https://dl.google.com/linux/linux_signing_key.pub -P /app
 RUN wget --no-check-certificate -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY -O /app/anydesk.key
+RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
+
 RUN apt-key add /app/anydesk.key
 RUN apt-key add /app/linux_signing_key.pub
 RUN set -ex; \
