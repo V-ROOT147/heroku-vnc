@@ -9,6 +9,7 @@ RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         dbus-x11 \
+        fluxbox \
         nautilus \
         gedit \
         expect \
@@ -29,6 +30,8 @@ RUN set -ex; \
         wget \
         g++ \
 	unzip \
+        xterm \
+        xvfb \
         ssh \
 	ffmpeg \
 	obs-studio \
@@ -48,9 +51,20 @@ RUN set -ex; \
 	ibus-qt4 \
         default-jdk \
         unrar \
-    && apt-get autoclean \
-    && apt-get autoremove \
+        vnc4server \
     && rm -rf /var/lib/apt/lists/*
+
+# Setup demo environment variables
+ENV HOME=/root \
+    DEBIAN_FRONTEND=noninteractive \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    DISPLAY=:0.0 \
+    DISPLAY_WIDTH=1024 \
+    DISPLAY_HEIGHT=768 \
+    RUN_XTERM=yes \
+    RUN_FLUXBOX=yes
 RUN dpkg-reconfigure locales
 
 COPY . /app
