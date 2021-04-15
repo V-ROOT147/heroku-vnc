@@ -80,6 +80,10 @@ ENV HOME=/root \
     RUN_FLUXBOX=yes
 RUN dpkg-reconfigure locales
 
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN adduser ubuntu
 
 RUN echo "ubuntu:ubuntu" | chpasswd && \
