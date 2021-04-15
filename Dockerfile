@@ -10,7 +10,6 @@ RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         dbus-x11 \
-        fluxbox \
         nautilus \
         gedit \
         expect \
@@ -31,9 +30,7 @@ RUN set -ex; \
         wget \
         g++ \
 	unzip \
-        xterm \
-        xvfb \
-        ssh \
+        openssh \
 	chromium-browser \
 	firefox \
         terminator \
@@ -48,117 +45,6 @@ RUN set -ex; \
 	ibus-gtk \
 	ibus-gtk3 \
 	ibus-qt4 \
-        default-jdk \
-        unrar \
-        vnc4server \
-        libc6:i386 \
-        libstdc++6:i386 \
-        libssl1.0.0:i386 \
-        libx11-6:i386 \
-        libncurses5:i386 \
-        zlib1g:i386 \
-        libgtk2.0-0:i386 \
-        libsdl1.2debian:i386 \
-        libgtk-3-0:i386 \
-        heroku \
-        bzip2 \
-        libbz2-1.0 \
-        libbz2-1.0:i386 \
-        libdb5.3:i386 \
-        libexpat1:i386 \
-        libffi6:i386 \
-        libgpm2:i386 \
-        libncursesw5:i386 \
-        libpython-stdlib:i386 \
-        libpython2.7-minimal:i386 \
-        libpython2.7-stdlib:i386 \
-        libc6:i386 \
-        libstdc++6:i386 \
-        libssl1.0.0:i386 \
-        libx11-6:i386 \
-        libncurses5:i386 \
-        zlib1g:i386 \
-        libgtk2.0-0:i386 \
-        libsdl1.2debian:i386 \
-        libgtk-3-0:i386 \
-        heroku \
-        bzip2 \
-        libbz2-1.0 \
-        libbz2-1.0:i386 \
-        libdb5.3:i386 \
-        libexpat1:i386 \
-        libffi6:i386 \
-        libgpm2:i386 \
-        libncursesw5:i386 \
-        libpython-stdlib:i386 \
-        libpython2.7-minimal:i386 \
-        libpython2.7-stdlib:i386 && \
-        curl \
-        binutils \
-        build-essential \
-        autoconf \
-        bison \
-        flex \
-        ncurses-dev \
-        libssl-dev \
-        fakeroot \
-        fakechroot \
-        xz-utils \
-        libelf-dev \
-        bc \
-        device-tree-compiler \
-        vim-tiny \
-        net-tools \
-        git \
-        gawk \
-        telnet \
-        python \
-        python-numpy \
-        nginx \
-        xserver-xorg-video-dummy \
-        x11vnc \
-        tigervnc-standalone-server vlc megatools \
-        less \
-        socat \
-        vde2 \
-        qemu \
-        zip \
-        unzip \
-        openssh-server \
-        p7zip-rar \
-        p7zip-full \
-        x11-xserver-utils \
-        xdotool \
-        x11-apps \
-        x11-utils \
-        gettext-base \
-        firefox \
-        vlc \
-        leafpad \
-        file-roller \
-        transmission \
-        evince \
-        lubuntu-core \
-        golang-go \
-        binutils-aarch64-linux-gnu \
-        gcc-aarch64-linux-gnu \
-        g++-aarch64-linux-gnu \
-        binutils-arm-linux-gnueabi \
-        gcc-arm-linux-gnueabi \
-        g++-arm-linux-gnueabi \
-        binutils-arm-linux-gnueabihf \
-        gcc-arm-linux-gnueabihf \
-        g++-arm-linux-gnueabihf \
-        tint2 \
-        ffmpeg \
-        expect-dev \
-        default-jdk \
-        libssl-dev libffi-dev python-dev python3-dev ncurses-dev python-pip python3-pip virtualenv \
-        openjdk-8-jdk \
-        fonts-liberation libappindicator1 \
-        qemu-user-static \
-        debootstrap \
-        schroot \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
