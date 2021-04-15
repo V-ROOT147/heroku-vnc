@@ -48,6 +48,7 @@ RUN set -ex; \
 	ibus-qt4 \
         default-jdk \
         ffmpeg \
+        gdebi-core \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -113,6 +114,9 @@ RUN apt-get update
 RUN apt-get install -y firefox
 RUN apt-get update
 RUN apt-get install -y xterm
+RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+RUN gdebi teamviewer_amd64.deb && \
+    y
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
