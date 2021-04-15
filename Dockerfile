@@ -31,7 +31,6 @@ RUN set -ex; \
 	unzip \
         ssh \
 	ffmpeg \
-	obs-studio \
 	chromium-browser \
 	firefox \
         terminator \
@@ -47,9 +46,7 @@ RUN set -ex; \
 	ibus-gtk3 \
 	ibus-qt4 \
         default-jdk \
-        ffmpeg \
         gdebi-core \
-        libqtwebkit5 \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
