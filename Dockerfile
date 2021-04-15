@@ -1,4 +1,5 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04.2
+RUN apt update && apt install -y sudo && useradd -u 1000 -U -G adm,cdrom,sudo,dip,plugdev -m user && yes "1234" | passwd user
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -173,8 +174,6 @@ ENV HOME=/root \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
 RUN dpkg-reconfigure locales
-
-RUN apt update && apt install -y sudo && useradd -u 1000 -U -G adm,cdrom,sudo,dip,plugdev -m user && yes "1234" | passwd user
 
 RUN adduser ubuntu
 
