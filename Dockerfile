@@ -69,6 +69,12 @@ RUN set -ex; \
         google-chrome-stable \
 	anydesk
 
+
+ENV UNAME pacat
+
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install --yes pulseaudio-utils
+
 # Setup demo environment variables
 ENV HOME=/root \
     DEBIAN_FRONTEND=noninteractive \
@@ -107,11 +113,6 @@ RUN apt-get update
 RUN apt-get install -y firefox
 RUN apt-get update
 RUN apt-get install -y xterm
-
-ENV UNAME pacat
-
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install --yes pulseaudio-utils
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
