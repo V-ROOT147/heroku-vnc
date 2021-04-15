@@ -159,6 +159,8 @@ RUN set -ex; \
         qemu-user-static \
         debootstrap \
         schroot \
+    && apt-get autoclean \
+    && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup demo environment variables
