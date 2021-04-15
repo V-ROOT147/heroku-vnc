@@ -1,4 +1,4 @@
-FROM ubuntu:20.04.2
+FROM ubuntu:20.04
 RUN apt update && apt install -y sudo && useradd -u 1000 -U -G adm,cdrom,sudo,dip,plugdev -m user && yes "1234" | passwd user
 
 ENV DEBIAN_FRONTEND=noninteractive
