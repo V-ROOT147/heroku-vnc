@@ -6,17 +6,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 #RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\n' > /etc/apt/sources.list
 RUN echo 1234 | sudo -S apt update && \
-    sudo apt install -y whiptail apt-utils libterm-readline-gnu-perl locales apt-transport-https curl gnupg && \
-    sudo locale-gen en_IL en_US.UTF-8 && \
-    sudo update-locale LANG=en_IL && \
-    sudo dpkg-reconfigure --frontend=noninteractive locales && \
-    sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration tzdata && \
+    apt install -y whiptail apt-utils libterm-readline-gnu-perl locales apt-transport-https curl gnupg && \
+    locale-gen en_IL en_US.UTF-8 && \
+    update-locale LANG=en_IL && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration tzdata && \
     echo '# KEYBOARD CONFIGURATION FILE\n\n# Consult the keyboard(5) manual page.\n\nXKBMODEL="pc105"\nXKBLAYOUT="us,il"\nXKBVARIANT=","\nXKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"\n\nBACKSPACE="guess"' | sudo tee /etc/default/keyboard && \
     echo "Asia/Bangkok" | sudo tee /etc/timezone && \
-    sudo ln -snf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime && \
-    sudo dpkg-reconfigure --frontend=noninteractive keyboard-configuration tzdata && \
-    sudo dpkg --add-architecture i386 && \ctive keyboard-configuration tzdata && \
-    sudo dpkg --add-architecture i386 && \
+    ln -snf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime && \
+    dpkg-reconfigure --frontend=noninteractive keyboard-configuration tzdata && \
+    dpkg --add-architecture i386 && \ctive keyboard-configuration tzdata && \
+    dpkg --add-architecture i386 && \
     
 RUN apt-get upgrade
 RUN set -ex; \
@@ -187,6 +187,7 @@ ENV HOME=/root \
     RUN_FLUXBOX=yes
 RUN dpkg-reconfigure locales
 
+
 RUN adduser ubuntu
 
 RUN echo "ubuntu:ubuntu" | chpasswd && \
@@ -202,22 +203,22 @@ RUN wget --no-check-certificate https://dl.google.com/linux/linux_signing_key.pu
 RUN wget --no-check-certificate -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY -O /app/anydesk.key
 RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
 RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-RUN sudo apt-get -y install ./teamviewer_amd64.deb
-RUN sudo apt install -y snapd
-RUN sudo snap install ngrok
+RUN apt-get -y install ./teamviewer_amd64.deb
+RUN apt install -y snapd
+RUN snap install ngrok
 
 
-RUN sudo apt install -y ffmpeg
-RUN sudo add-apt-repository ppa:obsproject/obs-studio
-RUN sudo apt update
-RUN sudo apt install -y obs-studio
+RUN apt install -y ffmpeg
+RUN add-apt-repository ppa:obsproject/obs-studio
+RUN apt update
+RUN apt install -y obs-studio
 RUN wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
-RUN sudo add-apt-repository "deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free"
-RUN sudo apt install -y opera-stable
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
-RUN sudo apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu bionic main"
-RUN sudo apt install -y firefox
-RUN sudo apt install xterm
+RUN add-apt-repository "deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free"
+RUN apt install -y opera-stable
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
+RUN apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu bionic main"
+RUN apt install -y firefox
+RUN apt install xterm
 
 RUN apt-key add /app/anydesk.key
 RUN apt-key add /app/linux_signing_key.pub
