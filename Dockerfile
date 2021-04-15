@@ -91,8 +91,8 @@ RUN echo "ubuntu:ubuntu" | chpasswd && \
     sudo usermod -a -G sudo ubuntu
     
 RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
-RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-RUN apt-get -y install ./teamviewer_amd64.deb
+RUN wget https://download.teamviewer.com/download/linux/teamviewer_i386.deb
+RUN apt install -y ./teamviewer_i386.deb
 
 RUN apt install -y default-jdk
 RUN apt install -y ffmpeg
