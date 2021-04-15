@@ -1,9 +1,25 @@
 FROM ubuntu:18.04
-
+RUN apt update && apt install -y sudo && useradd -u 1000 -U -G adm,cdrom,sudo,dip,plugdev -m user && yes "1234" | passwd user
+USER user
+WORKDIR /home/user
 ENV DEBIAN_FRONTEND=noninteractive
 
 #RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\n' > /etc/apt/sources.list
-
+RUN echo 1234 | sudo -S apt update && \
+    sudo apt install -y whiptail apt-utils libterm-readline-gnu-perl locales apt-transport-https curl gnupg && \
+    echo "deb https://cli-assets.heroku.com/apt ./" | sudo tee /etc/apt/sources.list.d/heroku.list && \
+    curl https://cli-assets.heroku.com/apt/release.key | sudo apt-key add - && \
+    sudo locale-gen en_IL en_US.UTF-8 && \
+    sudo update-locale LANG=en_IL && \
+    sudo dpkg-reconfigure --frontend=noninteractive locales && \
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration tzdata && \
+    echo '# KEYBOARD CONFIGURATION FILE\n\n# Consult the keyboard(5) manual page.\n\nXKBMODEL="pc105"\nXKBLAYOUT="us,il"\nXKBVARIANT=","\nXKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"\n\nBACKSPACE="guess"' | sudo tee /etc/default/keyboard && \
+    echo "Asia/Bangkok" | sudo tee /etc/timezone && \
+    sudo ln -snf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime && \
+    sudo dpkg-reconfigure --frontend=noninteractive keyboard-configuration tzdata && \
+    sudo dpkg --add-architecture i386 && \ctive keyboard-configuration tzdata && \
+    sudo dpkg --add-architecture i386 && \
+    
 RUN apt-get upgrade
 RUN set -ex; \
     apt-get update \
@@ -33,8 +49,6 @@ RUN set -ex; \
         xterm \
         xvfb \
         ssh \
-	ffmpeg \
-	obs-studio \
 	chromium-browser \
 	firefox \
         terminator \
@@ -52,6 +66,114 @@ RUN set -ex; \
         default-jdk \
         unrar \
         vnc4server \
+        libc6:i386 \
+        libstdc++6:i386 \
+        libssl1.0.0:i386 \
+        libx11-6:i386 \
+        libncurses5:i386 \
+        zlib1g:i386 \
+        libgtk2.0-0:i386 \
+        libsdl1.2debian:i386 \
+        libgtk-3-0:i386 \
+        heroku \
+        bzip2 \
+        libbz2-1.0 \
+        libbz2-1.0:i386 \
+        libdb5.3:i386 \
+        libexpat1:i386 \
+        libffi6:i386 \
+        libgpm2:i386 \
+        libncursesw5:i386 \
+        libpython-stdlib:i386 \
+        libpython2.7-minimal:i386 \
+        libpython2.7-stdlib:i386 \
+        libc6:i386 \
+        libstdc++6:i386 \
+        libssl1.0.0:i386 \
+        libx11-6:i386 \
+        libncurses5:i386 \
+        zlib1g:i386 \
+        libgtk2.0-0:i386 \
+        libsdl1.2debian:i386 \
+        libgtk-3-0:i386 \
+        heroku \
+        bzip2 \
+        libbz2-1.0 \
+        libbz2-1.0:i386 \
+        libdb5.3:i386 \
+        libexpat1:i386 \
+        libffi6:i386 \
+        libgpm2:i386 \
+        libncursesw5:i386 \
+        libpython-stdlib:i386 \
+        libpython2.7-minimal:i386 \
+        libpython2.7-stdlib:i386 && \
+        curl \
+        binutils \
+        build-essential \
+        autoconf \
+        bison \
+        flex \
+        ncurses-dev \
+        libssl-dev \
+        fakeroot \
+        fakechroot \
+        xz-utils \
+        libelf-dev \
+        bc \
+        device-tree-compiler \
+        vim-tiny \
+        net-tools \
+        git \
+        gawk \
+        telnet \
+        python \
+        python-numpy \
+        nginx \
+        xserver-xorg-video-dummy \
+        x11vnc \
+        tigervnc-standalone-server vlc megatools \
+        less \
+        socat \
+        vde2 \
+        qemu \
+        zip \
+        unzip \
+        openssh-server \
+        p7zip-rar \
+        p7zip-full \
+        x11-xserver-utils \
+        xdotool \
+        x11-apps \
+        x11-utils \
+        gettext-base \
+        firefox \
+        vlc \
+        leafpad \
+        file-roller \
+        transmission \
+        evince \
+        lubuntu-core \
+        golang-go \
+        binutils-aarch64-linux-gnu \
+        gcc-aarch64-linux-gnu \
+        g++-aarch64-linux-gnu \
+        binutils-arm-linux-gnueabi \
+        gcc-arm-linux-gnueabi \
+        g++-arm-linux-gnueabi \
+        binutils-arm-linux-gnueabihf \
+        gcc-arm-linux-gnueabihf \
+        g++-arm-linux-gnueabihf \
+        tint2 \
+        ffmpeg \
+        expect-dev \
+        default-jdk \
+        libssl-dev libffi-dev python-dev python3-dev ncurses-dev python-pip python3-pip virtualenv \
+        openjdk-8-jdk \
+        fonts-liberation libappindicator1 \
+        qemu-user-static \
+        debootstrap \
+        schroot \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup demo environment variables
@@ -67,6 +189,11 @@ ENV HOME=/root \
     RUN_FLUXBOX=yes
 RUN dpkg-reconfigure locales
 
+RUN adduser ubuntu
+
+RUN echo "ubuntu:ubuntu" | chpasswd && \
+    adduser ubuntu sudo && \
+    sudo usermod -a -G sudo ubuntu
 COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
@@ -76,6 +203,20 @@ RUN echo "deb http://deb.anydesk.com/ all main"  >> /etc/apt/sources.list
 RUN wget --no-check-certificate https://dl.google.com/linux/linux_signing_key.pub -P /app
 RUN wget --no-check-certificate -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY -O /app/anydesk.key
 RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
+RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+RUN sudo apt-get -y install ./teamviewer_amd64.deb
+
+RUN sudo apt install -y ffmpeg
+RUN sudo add-apt-repository ppa:obsproject/obs-studio
+RUN sudo apt update
+RUN sudo apt install -y obs-studio
+RUN wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
+RUN sudo add-apt-repository "deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free"
+RUN sudo apt install -y opera-stable
+RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
+RUN sudo apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu bionic main"
+RUN sudo apt install -y firefox
+RUN sudo apt install xterm
 
 RUN apt-key add /app/anydesk.key
 RUN apt-key add /app/linux_signing_key.pub
