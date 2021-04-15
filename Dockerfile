@@ -5,18 +5,7 @@ WORKDIR /home/user
 ENV DEBIAN_FRONTEND=noninteractive
 
 #RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\n' > /etc/apt/sources.list
-RUN echo 1234 | sudo -S apt update && \
-    apt install -y whiptail apt-utils libterm-readline-gnu-perl locales apt-transport-https curl gnupg && \
-    locale-gen en_IL en_US.UTF-8 && \
-    update-locale LANG=en_IL && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration tzdata && \
-    echo '# KEYBOARD CONFIGURATION FILE\n\n# Consult the keyboard(5) manual page.\n\nXKBMODEL="pc105"\nXKBLAYOUT="us,il"\nXKBVARIANT=","\nXKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"\n\nBACKSPACE="guess"' | sudo tee /etc/default/keyboard && \
-    echo "Asia/Bangkok" | sudo tee /etc/timezone && \
-    ln -snf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime && \
-    dpkg-reconfigure --frontend=noninteractive keyboard-configuration tzdata && \
-    dpkg --add-architecture i386 && \ctive keyboard-configuration tzdata && \
-    dpkg --add-architecture i386 && \
+
     
 RUN apt-get upgrade
 RUN set -ex; \
