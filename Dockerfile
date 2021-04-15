@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -90,7 +90,7 @@ RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /a
 RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 RUN apt-get -y install ./teamviewer_amd64.deb
 
-RUN apt install default-jdk
+RUN apt install -y default-jdk
 RUN apt install -y ffmpeg
 RUN add-apt-repository ppa:obsproject/obs-studio
 RUN apt update
@@ -101,7 +101,7 @@ RUN apt install -y opera-stable
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
 RUN apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu bionic main"
 RUN apt install -y firefox
-RUN apt install xterm
+RUN apt install -y xterm
 
 ENV UNAME pacat
 
