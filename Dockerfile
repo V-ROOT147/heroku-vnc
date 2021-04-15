@@ -49,6 +49,7 @@ RUN set -ex; \
         default-jdk \
         ffmpeg \
         gdebi-core \
+        libqtwebkit5 \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
