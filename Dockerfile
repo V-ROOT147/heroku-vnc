@@ -46,6 +46,8 @@ RUN set -ex; \
 	ibus-gtk \
 	ibus-gtk3 \
 	ibus-qt4 \
+        default-jdk \
+        ffmpeg \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -92,18 +94,19 @@ RUN echo "ubuntu:ubuntu" | chpasswd && \
     
 RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
 
-RUN apt install -y default-jdk
-RUN apt install -y ffmpeg
 RUN add-apt-repository ppa:obsproject/obs-studio
-RUN apt update
-RUN apt install -y obs-studio
+RUN apt-get update
+RUN apt-get install -y obs-studio
 RUN wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
 RUN add-apt-repository "deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free"
-RUN apt install -y opera-stable
+RUN apt-get update
+RUN apt-get install -y opera-stable
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
 RUN apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu bionic main"
-RUN apt install -y firefox
-RUN apt install -y xterm
+RUN apt-get update
+RUN apt-get install -y firefox
+RUN apt-get update
+RUN apt-get install -y xterm
 
 ENV UNAME pacat
 
