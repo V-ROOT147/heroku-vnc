@@ -89,9 +89,8 @@ RUN echo "ubuntu:ubuntu" | chpasswd && \
 RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
 RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 RUN apt-get -y install ./teamviewer_amd64.deb
-RUN apt install -y snapd
-RUN snap install ngrok
 
+RUN apt install default-jdk
 RUN apt install -y ffmpeg
 RUN add-apt-repository ppa:obsproject/obs-studio
 RUN apt update
