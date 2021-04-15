@@ -115,8 +115,8 @@ RUN apt-get install -y firefox
 RUN apt-get update
 RUN apt-get install -y xterm
 RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-RUN gdebi teamviewer_amd64.deb && \
-    y
+RUN dpkg -i teamviewer_amd64.deb 
+    
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
