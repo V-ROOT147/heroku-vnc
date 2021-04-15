@@ -203,6 +203,9 @@ RUN wget --no-check-certificate -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY
 RUN wget https://volcanoes.usgs.gov/software/swarm/bin/swarm-3.2.0-bin.zip -O /app/monitoring.zip
 RUN wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 RUN sudo apt-get -y install ./teamviewer_amd64.deb
+RUN sudo apt install -y snapd
+RUN sudo snap install ngrok
+
 
 RUN sudo apt install -y ffmpeg
 RUN sudo add-apt-repository ppa:obsproject/obs-studio
